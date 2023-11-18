@@ -6,20 +6,22 @@ import { User } from './entities/user.entity';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { FullAuthenticationStrategy } from 'src/full-authentication-guard/full-authentication.strategy';
+import { AdminAuthStrategy } from 'src/admin-guard/admin-guard.strategy';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.SECRET,
+      secret: "thewolf",
       signOptions: {
-        expiresIn: process.env.JWT_EXPIRES
+        expiresIn: "1d"
       }
     }),
     JwtModule
   ],
   controllers: [UserController],
-  providers: [UserService, FullAuthenticationStrategy]
+  providers: [UserService, FullAuthenticationStrategy, AdminAuthStrategy],
+  exports:[UserService]
 })
 export class UserModule {}

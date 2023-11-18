@@ -22,7 +22,7 @@ export class FullAuthenticationStrategy extends PassportStrategy(
         super({
             jwtFromRequest: ExtractJwt.fromHeader(HEADER_AUTHENTICATION_TOKEN_KEY),
             ignoreExpiration: false,
-            secretOrKey: configService.get<string>("SECRET"),
+            secretOrKey: "thewolf",
         })
     }
 
