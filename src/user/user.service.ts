@@ -37,7 +37,7 @@ export class UserService {
             await this.repository.save(user)
             return user
         } catch (error) {
-            console.log(error)
+            console.log("error", error)
             throw new Error("Something went wrong during registering user")
         }
     }
@@ -117,6 +117,10 @@ async updateUserInfo(id: number, payload: UpdateUserDto): Promise<UpdateResult> 
     }
 
     const updated = await this.repository.update(id, payload);
+    
+    if(updated.affected === 0) {
+        throw new Error("Something went wrong during updating user");
+    }
 
     return updated;
 }

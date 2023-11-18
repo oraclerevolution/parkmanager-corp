@@ -12,9 +12,9 @@ import { FullAuthenticationStrategy } from 'src/full-authentication-guard/full-a
     TypeOrmModule.forFeature([User]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.SECRET,
+      secret: "thewolf",
       signOptions: {
-        expiresIn: process.env.JWT_EXPIRES
+        expiresIn: "1d"
       }
     }),
     JwtModule

@@ -23,10 +23,10 @@ export class User {
     })
     role: string
 
-    @Column({nullable: true})
+    @Column({nullable: true, default: false})
     canAssignPlaces: boolean
 
-    @Column({nullable: true})
+    @Column({nullable: true, default: false})
     canCreatePlaces: boolean
 
     @CreateDateColumn({name: 'created_at'})
