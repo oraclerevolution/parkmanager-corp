@@ -5,15 +5,15 @@ import { InjectRepository } from "@nestjs/typeorm";
 import {Strategy, ExtractJwt} from "passport-jwt"
 import { User } from "src/user/entities/user.entity";
 import { Repository } from "typeorm";
-import { Payload } from "./interfaces/payload.interface";
+import { Payload } from "./payload.interface";
 
 const HEADER_AUTHENTICATION_TOKEN_KEY = "authenticationtoken";
-export const FULL_AUTH_GUARD = "FULL_AUTH_GUARD";
+export const ADMIN_AUTH_GUARD = "ADMIN_AUTH_GUARD";
 
 @Injectable()
-export class FullAuthenticationStrategy extends PassportStrategy(
+export class AdminAuthStrategy extends PassportStrategy(
     Strategy,
-    FULL_AUTH_GUARD
+    ADMIN_AUTH_GUARD
 ){
     constructor(
         private readonly configService: ConfigService,
@@ -32,6 +32,11 @@ export class FullAuthenticationStrategy extends PassportStrategy(
         if(!user){
             throw new UnauthorizedException();
         }
+
+        if(user.role !== "admin"){
+            throw new UnauthorizedException();
+        }
+
         delete user.password
         delete user.salt
         return user
