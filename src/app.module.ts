@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HelperModule } from './helper/helper.module';
 import { UserModule } from './user/user.module';
+import { ParkingPlaceModule } from './parking-place/parking-place.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { UserModule } from './user/user.module';
       synchronize: true,
     }),
     HelperModule,
-    UserModule
+    UserModule,
+    ParkingPlaceModule
   ],
   controllers: [AppController],
   providers: [AppService],
