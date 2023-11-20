@@ -17,8 +17,11 @@ export class ParkingPlace {
     @Column({nullable: true})
     availability: boolean;
 
-    @Column(({nullable: true}))
+    @Column(({nullable: true, default:0}))
     occupationTime: number;
+
+    @Column({nullable: true})
+    occupiedBy: number;
 
     @CreateDateColumn({name:"created_at"})
     createdAt: Date;

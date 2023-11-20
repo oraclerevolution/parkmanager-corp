@@ -13,6 +13,7 @@ import { AdminAuthStrategy } from 'src/admin-guard/admin-guard.strategy';
     UserModule
   ],
   controllers: [ParkingPlaceController],
-  providers: [ParkingPlaceService, FullAuthenticationStrategy, AdminAuthStrategy]
+  providers: [ParkingPlaceService, FullAuthenticationStrategy, AdminAuthStrategy],
+  exports:[ParkingPlaceService]
 })
 export class ParkingPlaceModule {}
