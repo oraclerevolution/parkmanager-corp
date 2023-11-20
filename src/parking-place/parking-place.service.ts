@@ -4,6 +4,7 @@ import { ParkingPlace } from './entities/parking-place.entity';
 import { Repository, UpdateResult } from 'typeorm';
 import { CreateParkingPlaceDto } from './dto/create-parking-place.dto';
 import { UpdateParkingPlace } from './dto/update-parking-place.dto';
+import { SearchParkingPlace } from './enums/search-parking-place.enum';
 
 @Injectable()
 export class ParkingPlaceService {
@@ -80,5 +81,24 @@ export class ParkingPlaceService {
 
         const updated = await this.repository.update(parkingId, parking_place[0]);
         return updated;
+    }
+
+    async searchFreeParkingPlaces(
+        floorId: number
+    ): Promise<SearchParkingPlace>{
+        const freeParkingPlaces = await this.repository.findAndCount({
+            where: {
+                etage: floorId,
+                availability: true
+            }
+        })
+
+        const parkings = freeParkingPlaces[0]
+        const count = freeParkingPlaces[1]
+
+        return {
+            parkings,
+            count
+        }
     }
 }

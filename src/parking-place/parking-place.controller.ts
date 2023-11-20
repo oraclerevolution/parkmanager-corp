@@ -6,6 +6,7 @@ import { FullAuthenticationGuard } from 'src/full-authentication-guard/full-auth
 import { AdminAuthGuard } from 'src/admin-guard/admin-guard.guard';
 import { UpdateParkingPlace } from './dto/update-parking-place.dto';
 import { UpdateResult } from 'typeorm';
+import { SearchParkingPlace } from './enums/search-parking-place.enum';
 
 @UseGuards(FullAuthenticationGuard)
 @Controller('parking-place')
@@ -54,5 +55,12 @@ export class ParkingPlaceController {
         @Query("id") id: number,
     ): Promise<UpdateResult>{
         return await this.parkingPlaceService.unassignParkingPlaceToUser(id)
+    }
+
+    @Get("search-free-parking-places")
+    async searchFreeParkingPlaces(
+        @Query('id') id: number
+    ): Promise<SearchParkingPlace> {
+        return await this.parkingPlaceService.searchFreeParkingPlaces(id)
     }
 }
