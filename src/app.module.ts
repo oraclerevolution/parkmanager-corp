@@ -25,7 +25,7 @@ import { ParkingPlaceModule } from './parking-place/parking-place.module';
     }),
     HelperModule,
     UserModule,
-    ParkingPlaceModule
+    ParkingPlaceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
