@@ -101,4 +101,23 @@ export class ParkingPlaceService {
             count
         }
     }
+
+    async searchSeatByUserId(
+        userId: number
+    ): Promise<ParkingPlace | object>{
+        const seat = await this.repository.find({
+            where: {
+                occupiedBy: userId
+            }
+        })
+
+        if(seat.length === 0){
+            return {
+                message: "Le user n'a pas de voiture garée dans le parking",
+                status: 404
+            }
+        }
+
+        return seat
+    }
 }

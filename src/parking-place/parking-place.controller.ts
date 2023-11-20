@@ -63,4 +63,11 @@ export class ParkingPlaceController {
     ): Promise<SearchParkingPlace> {
         return await this.parkingPlaceService.searchFreeParkingPlaces(id)
     }
+
+    @Get('search-seat-by-user')
+    async searchSeatByUser(
+        @Query('id') id: number
+    ): Promise<ParkingPlace | object> {
+        return await this.parkingPlaceService.searchSeatByUserId(id)
+    }
 }
