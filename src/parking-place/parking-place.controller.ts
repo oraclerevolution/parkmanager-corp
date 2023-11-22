@@ -23,6 +23,11 @@ export class ParkingPlaceController {
         return await this.parkingPlaceService.createParkingPlace(payload)
     }
 
+    @Get('all-places')
+    async getAllParkingPlaces(): Promise<ParkingPlace[]>{
+        return await this.parkingPlaceService.getAllParkingPlaces()
+    }
+
     @UseGuards(AdminAuthGuard)
     @Get('')
     async getParkingPlaceDetails(

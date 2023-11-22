@@ -17,6 +17,10 @@ export class ParkingPlaceService {
         return await this.repository.save(parkingPlace)
     }
 
+    async getAllParkingPlaces(): Promise<ParkingPlace[]> {
+        return await this.repository.find();
+    }
+
     async getParkingDetails(id: number){
         const parkingDetails = await this.repository.find({
             where:{
